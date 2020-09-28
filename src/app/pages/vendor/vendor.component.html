@@ -1,0 +1,173 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">New Signup</h5>
+                  <span class="h2 font-weight-bold mb-0">{{vendorSignupToday}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                    <i class="fas fa-chart-bar"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> </span>
+                <span class="text-nowrap"></span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Occupied</h5>
+                  <span class="h2 font-weight-bold mb-0">{{occupiedTWCapacity}}</span>
+                  <br>
+                  <span class="h2 font-weight-bold mb-0">{{occupiedFWCapacity}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                    <i class="fas fa-users"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Check In</h5>
+                  <span class="h2 font-weight-bold mb-0">{{todaysCheckIn}}</span>
+                  <span class="h2 font-weight-bold mb-0">{{todaysCheckOut}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                    <i class="fas fa-percent"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Available</h5>
+                  <span class="h2 font-weight-bold mb-0">{{availableTWCapacity}}</span>
+                  <br>
+                  <span class="h2 font-weight-bold mb-0">{{availableFWCapacity}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                    <i class="fas fa-percent"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Vendors</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">ID</th>
+                <th scope="col">Activated</th>
+                <th scope="col">KYC</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of result">
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
+                      <img alt="Image placeholder" src="../assets/img/theme/bootstrap.jpg">
+                    </a>
+                    <div class="media-body">
+                      <span class="mb-0 text-sm" *ngIf="item['Nf']['nn']['proto']['mapValue']['fields']['name']">{{item['Nf']['nn']['proto']['mapValue']['fields']['name']['stringValue']}}</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  <span class="mb-0 text-sm" *ngIf="item['Nf']['nn']['proto']['mapValue']['fields']['id']">{{item['Nf']['nn']['proto']['mapValue']['fields']['id']['stringValue']}} </span>
+                </td>
+                <td>
+                  <span class="badge badge-dot mr-4" *ngIf="item['Nf']['nn']['proto']['mapValue']['fields']['isActivated']">
+                    <span *ngIf="item['Nf']['nn']['proto']['mapValue']['fields']['isActivated']['booleanValue'] == true">
+                      <span style="background-color: green;">
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </span>
+                    </span>
+
+                    <span *ngIf="item['Nf']['nn']['proto']['mapValue']['fields']['isActivated']['booleanValue'] == false">
+                      <span style="background-color: red;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </span>
+                    </span>
+                  </span>
+                </td>
+
+                <td>
+                  <span class="badge badge-dot mr-4" *ngIf="item['Nf']['nn']['proto']['mapValue']['fields']['isKYC']">
+                    <span *ngIf="item['Nf']['nn']['proto']['mapValue']['fields']['isKYC']['booleanValue'] == true">
+                      <span style="background-color: green;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </span>
+                    </span>
+
+                    <span *ngIf="item['Nf']['nn']['proto']['mapValue']['fields']['isKYC']['booleanValue'] == false">
+                      <span style="background-color: red;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </span>
+                    </span>
+                  </span>
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" (click)="completeKYC(item)" *ngIf="item['Nf']['nn']['proto']['mapValue']['fields']['isKYC']['booleanValue'] == false">Action</a>
+                      <a class="dropdown-item" (click)="completeActivation(item)" *ngIf="item['Nf']['nn']['proto']['mapValue']['fields']['isActivated']['booleanValue'] == false">Another action</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

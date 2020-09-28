@@ -1,0 +1,79 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Transactions</h3>
+        </div>
+        <span>
+          <!-- FROM DATE START -->
+          <mat-form-field>
+            <input type="date" matInput [(ngModel)]="fromDate" placeholder="Filter" (change)="getFromDate($event)">
+          </mat-form-field>
+          <!-- FROm DATE END -->
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <!-- To DATE START -->
+          <mat-form-field>
+            <input type="date" matInput [(ngModel)]="toDate" placeholder="Filter" (change)="getToDate($event)">
+          </mat-form-field>
+
+          <button (click)="submit()">Submit</button>
+          <!-- To DATE END -->
+      </span>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Vechile No.</th>
+                <th scope="col">ID</th>
+                <th scope="col">Entry Time Stamp</th>
+                <th scope="col">Exit Time Stamp</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of result" (click)="goToTransactionDetails(item['id']['stringValue'])">
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm" >{{item['vehicleNo']['stringValue']}}</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  <span class="mb-0 text-sm" *ngIf="item['id']">{{item['id']['stringValue']}} </span>
+                </td>
+                <td>
+                  <span class="mb-0 text-sm" *ngIf="item['entryTimestamp']">
+                    <span *ngIf="item['entryTimestamp']['timestampValue']">
+                      {{item['entryTimestamp']['timestampValue']}} 
+                  </span>
+                 </span>
+                </td>
+                <td>
+                  <span class="mb-0 text-sm" *ngIf="item['exitTimestamp']">
+                    <span *ngIf="item['exitTimestamp']['timestampValue']">
+                      {{item['exitTimestamp']['timestampValue']}} 
+                  </span>
+                 </span>
+                </td>
+                
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
